@@ -25,7 +25,7 @@ def elastic_load_balancer(name, *args)
         exit
     else
         load_balancer.instances.each do |instance|
-            hostname = instance.dns_name
+            hostname = instance.dns_name || instance.private_ip_address
             server(hostname, *args)
         end
     end
